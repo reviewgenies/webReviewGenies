@@ -208,6 +208,7 @@ async function getFilters() {
         redirect: 'follow'
     };
 
+    
     fetch("/api/filters/findFiltersForm3", requestOptions)
         .then(response => response.json())
         .then(response => {
