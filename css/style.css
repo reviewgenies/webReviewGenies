@@ -12915,8 +12915,7 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 
 .btn-primary {
   color: #fff;
-  background-color: #1F3BB3;
-  border-color: #1F3BB3;
+ 
 }
 
 .btn-primary:hover {
@@ -24301,7 +24300,7 @@ code {
 
 /*social buttons*/
 .btn-primary {
-  background: #1F3BB3;
+  background: #da532c;
   color: #ffffff;
 }
 
