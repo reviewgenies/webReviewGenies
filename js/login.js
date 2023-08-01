@@ -1,9 +1,19 @@
 
-async function login()
-{
+async function init() {
+
+  var tk = getCookie('tk');
+
+  if (tk) {   
+    window.location.href = '../index.html'
+  }
+}
+
+init();
+
+async function login() {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
- ///document.getElementById('identification').value.replace('-','').replace('-','')
+  ///document.getElementById('identification').value.replace('-','').replace('-','')
   var raw = JSON.stringify({
     "email": document.getElementById('email').value,
     "password": document.getElementById('password').value.replace(/\s/g, "")
@@ -20,14 +30,14 @@ async function login()
     .then(response => response.json())
     .then(response => {
 
-      if(response.accessToken!=null){
+      if (response.accessToken != null) {
 
         setCookie('tk', response.accessToken, 1);
         setCookie('if', response.id, 1);
 
-        window.location.href = '/dashboard';
-        
-      }else{
+        window.location.href = '../index.html';
+
+      } else {
         alert(response.message)
       }
 
@@ -48,19 +58,19 @@ function setCookie(cName, cValue, expDays) {
 function getCookie(name) {
   // Split cookie string and get all individual name=value pairs in an array
   var cookieArr = document.cookie.split(";");
-  
+
   // Loop through the array elements
-  for(var i = 0; i < cookieArr.length; i++) {
-      var cookiePair = cookieArr[i].split("=");
-      
-      /* Removing whitespace at the beginning of the cookie name
-      and compare it with the given string */
-      if(name == cookiePair[0].trim()) {
-          // Decode the cookie value and return
-          return decodeURIComponent(cookiePair[1]);
-      }
+  for (var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+
+    /* Removing whitespace at the beginning of the cookie name
+    and compare it with the given string */
+    if (name == cookiePair[0].trim()) {
+      // Decode the cookie value and return
+      return decodeURIComponent(cookiePair[1]);
+    }
   }
-  
+
   // Return null if not found
   return null;
 }
@@ -105,9 +115,9 @@ function phone_number_mask() {
 
   console.log(theLastPos)
 
-  if(theLastPos==13){
+  if (theLastPos == 13) {
     document.getElementById("login").disabled = false;
-  }else{
+  } else {
     document.getElementById("login").disabled = true;
   }
 

@@ -1,4 +1,10 @@
-$(document).ready(function () {
+async function init() {
+
+    var tk = getCookie('tk');
+
+    if (!tk) {
+        window.location.href = '../views/login.html'
+    }
 
     document.getElementById("btnChange").disabled = true;
 
@@ -23,7 +29,9 @@ $(document).ready(function () {
     })
 
 
-})
+}
+
+init();
 
 async function ChangePassword() {
 
@@ -57,9 +65,9 @@ async function ChangePassword() {
         .then(response => response.json())
         .then(response => {
             alert(response.message)
-            document.getElementById('oldpassword').value=""
-            document.getElementById('newpassword').value=""
-            document.getElementById('repeatpassword').value=""
+            document.getElementById('oldpassword').value = ""
+            document.getElementById('newpassword').value = ""
+            document.getElementById('repeatpassword').value = ""
         })
         .catch(error => console.log('error', error));
 
@@ -77,35 +85,35 @@ function getCookie(cookieName) {
 
 function exit() {
 
-    var id=getCookie('if');
-    var tk=getCookie('tk');
+    var id = getCookie('if');
+    var tk = getCookie('tk');
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("x-access-token", tk);
-    
+
     var raw = JSON.stringify({
         "id": id
-      });
+    });
 
-      var requestOptions = {
+    var requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: raw,
         redirect: 'follow'
-      };
+    };
 
-      fetch("https://apireviewgenies.azurewebsites.net/api/auth/signout/", requestOptions)
-      .then(response => response.json())
-      .then(() => {
-        deleteCookie('if');
-        deleteCookie('tk');
-        window.location.href = '/'
-      })
-      .catch(error => console.log('error', error));
+    fetch("https://apireviewgenies.azurewebsites.net/api/auth/signout/", requestOptions)
+        .then(response => response.json())
+        .then(() => {
+            deleteCookie('if');
+            deleteCookie('tk');
+            window.location.href = '../views/login.html'
+        })
+        .catch(error => console.log('error', error));
 
-   
-    
+
+
 
 }
 

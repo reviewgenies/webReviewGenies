@@ -5,7 +5,19 @@
 let activePage;
 reportName = "Mercado Inmobiliario"
 
+async function init(){
 
+    var tk = getCookie('tk');
+    console.log(tk)
+    if(!tk){
+        window.location.href = '../views/login.html'
+    }else{
+        getFilters();
+    }
+
+}
+
+init();
 
 async function getFilters() {
  
@@ -32,8 +44,6 @@ async function getFilters() {
         })
         .catch(error => console.log('error', error)); 
 }
-
-getFilters();
 
 async function filtrar() {
 
@@ -187,7 +197,7 @@ function exit() {
         .then(() => {
             deleteCookie('if');
             deleteCookie('tk');
-            window.location.href = '/'
+            window.location.href = '../views/login.html'
         })
         .catch(error => console.log('error', error));
 

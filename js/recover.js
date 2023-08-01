@@ -1,4 +1,18 @@
 
+
+
+async function init() {
+
+  var tk = getCookie('tk');
+
+  if (tk) {   
+    window.location.href = '../index.html'
+  }
+}
+
+init();
+
+
 async function btnrecover()
 {
 
@@ -22,7 +36,7 @@ async function btnrecover()
     .then(response => {
 
       alert(response.message)
-      window.location.href = '/';
+      window.location.href = '../views/login.html';
     })
     .catch(error => console.log('error', error));
 

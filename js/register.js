@@ -1,4 +1,15 @@
 
+async function init() {
+
+  var tk = getCookie('tk');
+
+  if (tk) {   
+    window.location.href = '../index.html'
+  }
+}
+
+init();
+
 $(document).ready(function () {
 
   $('#otherform').hide();
@@ -84,7 +95,7 @@ async function createregister() {
       } else {
 
         alert(response.message)
-        window.location.href = '/'
+        window.location.href = '../views/login.html'
       }
     })
     .catch(error => console.log('error', error));
