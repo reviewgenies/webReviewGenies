@@ -65,10 +65,16 @@ async function ChangePassword() {
     fetch("https://apireviewgenies.azurewebsites.net/api/auth/changepassword", requestOptions)
         .then(response => response.json())
         .then(response => {
-            alert(response.message)
-            document.getElementById('oldpassword').value = ""
-            document.getElementById('newpassword').value = ""
-            document.getElementById('repeatpassword').value = ""
+            if (response.message == "Unauthorized!") {
+                exit()
+            } else {
+                alert(response.message)
+                document.getElementById('oldpassword').value = ""
+                document.getElementById('newpassword').value = ""
+                document.getElementById('repeatpassword').value = ""
+            }
+
+
         })
         .catch(error => console.log('error', error));
 

@@ -8,7 +8,7 @@ reportName = "Mercado Inmobiliario"
 async function init(){
 
     var tk = getCookie('tk');
-    console.log(tk)
+
     if(!tk){
         window.location.href = '../views/login.html'
     }else{
@@ -38,8 +38,13 @@ async function getFilters() {
     await fetch("https://apireviewgenies.azurewebsites.net/api/params/"+id, requestOptions)
         .then(response => response.json())
         .then(response => {
-            
-            $('#iframe').attr('src', response.resultado.params)
+           
+            if(response.message=="Unauthorized!")
+            {
+                exit()
+            }
+
+           $('#iframe').attr('src', response.resultado.params)
 
         })
         .catch(error => console.log('error', error)); 
